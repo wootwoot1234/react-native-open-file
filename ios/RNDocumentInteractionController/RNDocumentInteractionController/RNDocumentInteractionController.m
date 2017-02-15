@@ -26,5 +26,10 @@ RCT_EXPORT_METHOD(open: (NSURL *)path)
 }
 
 
+- (void)documentInteractionControllerDidEndPreview:(UIDocumentInteractionController *)controller
+{
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+}
+
 @end
 
