@@ -20,7 +20,6 @@ RCT_EXPORT_METHOD(open: (NSURL *)path)
     dispatch_sync(dispatch_get_main_queue(), ^{
         [interactionController presentPreviewAnimated:YES];
     });
-    [[UIApplication sharedApplication] setStatusBarHidden:YES];
 }
 
 - (UIViewController *) documentInteractionControllerViewControllerForPreview: (UIDocumentInteractionController *) controller
