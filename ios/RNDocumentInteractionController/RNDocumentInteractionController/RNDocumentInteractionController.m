@@ -22,11 +22,28 @@ RCT_EXPORT_METHOD(open: (NSURL *)path)
     });
 }
 
+
 - (UIViewController *) documentInteractionControllerViewControllerForPreview: (UIDocumentInteractionController *) controller
 {
-    [[[[UIApplication sharedApplication] delegate] window] setWindowLevel:UIWindowLevelStatusBar];
-    
     return [[[[UIApplication sharedApplication] delegate] window] rootViewController];
 }
+
+
+static NSTimer* timer = nil;
+
+
+- (void)documentInteractionControllerWillBeginPreview:(UIDocumentInteractionController *)controller
+{
+    timer = [NSTimer scheduledTimerWithTimeInterval:0.1 repeats:YES block:^(NSTimer * _Nonnull timer) {
+        [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    }];
+}
+
+-(void)documentInteractionControllerDidEndPreview:(UIDocumentInteractionController *)controller
+{
+    [timer invalidate];
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+}
+
 
 @end
