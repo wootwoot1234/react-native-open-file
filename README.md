@@ -3,9 +3,9 @@
 ## Why
 
 We want an easy to way to open documents on disk (and possibly remote files as well) using default native behavior on both
-android and ios without dealing with the details of the two platforms. 
+android and ios without dealing with the details of the two platforms.
 
-## How 
+## How
 
 On iOS, use `DocumentInteractionController` to present a preview. On android...TBD
 
@@ -13,11 +13,16 @@ On iOS, use `DocumentInteractionController` to present a preview. On android...T
 
 Very early stage WIP. Only iOS is supported, and only in the most basic way.
 
+```javascript
+import {RNDocumentInteractionController} from 'NativeModules';
+RNDocumentInteractionController.open({path: filePath, name: "Text displayed in header bar"}); // name is optional
+```
+
 ## Usage
 
 ```
 npm install react-native-open-file --save
 ```
 
-And the usual iOS linking business for `DocumentInteractionController.xcodeproj`. 
+And the usual iOS linking business for `DocumentInteractionController.xcodeproj`.
 

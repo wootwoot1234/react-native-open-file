@@ -8,14 +8,19 @@
 
 #import "RNDocumentInteractionController.h"
 #import <UIKit/UIKit.h>
+#import <React/RCTConvert.h>
 
 @implementation RNDocumentInteractionController
 
 RCT_EXPORT_MODULE();
 
-RCT_EXPORT_METHOD(open: (NSURL *)path)
-{
+RCT_EXPORT_METHOD(open: (NSDictionary *)options) {
+    NSURL *path = [RCTConvert NSURL:options[@"path"]];
     UIDocumentInteractionController *interactionController = [UIDocumentInteractionController interactionControllerWithURL:path];
+    if (options[@"name"]){
+        NSString *name = [RCTConvert NSString:options[@"name"]];
+        interactionController.name = name;
+    }
     interactionController.delegate = self;
     dispatch_sync(dispatch_get_main_queue(), ^{
         [interactionController presentPreviewAnimated:YES];
