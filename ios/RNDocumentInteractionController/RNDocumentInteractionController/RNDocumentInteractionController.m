@@ -33,15 +33,16 @@ RCT_EXPORT_METHOD(open: (NSDictionary *)options) {
     return [[[[UIApplication sharedApplication] delegate] window] rootViewController];
 }
 
-
 static NSTimer* timer = nil;
-
 
 - (void)documentInteractionControllerWillBeginPreview:(UIDocumentInteractionController *)controller
 {
-    timer = [NSTimer scheduledTimerWithTimeInterval:0.1 repeats:YES block:^(NSTimer * _Nonnull timer) {
-        [[UIApplication sharedApplication] setStatusBarHidden:YES];
-    }];
+    timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(hideStatusBar) userInfo:nil repeats:YES];
+}
+
+-(void)hideStatusBar
+{
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
 }
 
 -(void)documentInteractionControllerDidEndPreview:(UIDocumentInteractionController *)controller
@@ -49,6 +50,5 @@ static NSTimer* timer = nil;
     [timer invalidate];
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
 }
-
 
 @end
