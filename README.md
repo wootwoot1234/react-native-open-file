@@ -21,7 +21,7 @@ RNDocumentInteractionController.open({path: filePath, name: "Text displayed in h
 ## Usage
 
 ```
-npm install react-native-open-file --save
+npm install --save react-native-open-file@https://github.com/wootwoot1234/react-native-open-file.git
 ```
 
 And the usual iOS linking business for `DocumentInteractionController.xcodeproj`.
